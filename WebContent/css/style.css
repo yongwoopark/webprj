@@ -1,0 +1,60 @@
+.d-none{
+    display: none;
+}
+
+.container{
+    width:960px;
+    height: 100%;
+    min-height: inherit;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.img-button{
+    text-indent: -999px;
+    overflow: hidden;
+    border: none;
+    display: inline-block;
+}
+
+.aside>h1{
+    font-family: "맑은 고딕", "고딕", "Arial", sans-serif;
+    font-size:24px;
+    font-weight: bold;
+    color:#000;
+}
+
+.aside-menu{
+    font-family: "맑은 고딕", "고딕", "Arial", sans-serif;
+    font-weight: bold;
+    color: #808080;
+    font-size: 11px;
+    margin-top: 20px;
+}
+    .aside-menu>h1{
+        font-family: 맑은 고딕, 고딕, sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        color: #000;
+        padding-left: 26px;
+        background: url(../image/aside/icon-recommend.png) no-repeat left center;
+    }
+    /* .aside-menu ul,
+    .aside-menu ol{
+        ??
+    } */
+    .aside-menu li{
+        --border-bottom: 2px dotted #979797;
+        height: 26px;
+        line-height: 26px;
+        background: url(../image/bg-aside-menu-hsp.png) no-repeat center bottom;
+    }
+        .aside-menu a{
+            padding-left: 26px;
+            text-decoration: none;
+        }
+        .aside-menu a.current,
+        .aside-menu a:hover{
+            background: url(../image/aside/icon-current.png) no-repeat 13px center;
+        }
+

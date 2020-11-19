@@ -1,0 +1,27 @@
+.container{
+    background: beige;
+    display: flex;
+    height: 250px;
+    flex-wrap: wrap;
+    --justify-content: center; 
+    --align-items: center;
+    --align-content: center;  
+    
+}
+
+.container>div{
+    height: 100px;
+    flex:0 0 100px;
+    background:pink;
+    border:1px solid gray;
+}
+
+.container>div:nth-child(4),
+.container>div:nth-child(3),
+.container>div:nth-child(5){
+    --align-self: flex-start;
+    --flex-grow:1;
+    height: 50px;    
+    background: chartreuse;
+    margin-left: auto;
+}
