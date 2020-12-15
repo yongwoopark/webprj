@@ -1,7 +1,6 @@
 package com.newlecture.web.controller.admin.notice;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,17 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.NoticeService;
 
-@WebServlet("/admin/board/notice/list")
-public class ListController extends HttpServlet {
+@WebServlet("/admin/board/notice/detail")
+public class DetailController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
 		
 		NoticeService service = new NoticeService();
-		List<Notice> list = service.getList();
+		Notice n = service.get(id);
 		
-		request.setAttribute("list", list);
+		request.setAttribute("n", n);
 		
-		request.getRequestDispatcher("list.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/admin/board/notice/detail.jsp").forward(request, response);
 	}
 }

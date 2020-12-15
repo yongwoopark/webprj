@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -64,6 +66,9 @@
                         <h1 class="hidden">회원메뉴</h1>
                         <ul>
                             <li><a href="/index.html">HOME</a></li>
+
+
+
                             <li>
                                 <form action="/logout" method="post">
                                     <input type="hidden" name="" value="" />
@@ -153,6 +158,11 @@
                                     <td class="text-align-left text-indent text-strong text-orange" colspan="3">
                                         <input type="text" name="title" />
                                     </td>
+                                </tr>
+                                <tr>
+                                    <th>첨부파일</th>
+                                    <td colspan="3" class="text-align-left text-indent"><input type="file"
+                                            name="file" /> </td>
                                 </tr>
                                 <tr>
                                     <th>첨부파일</th>
