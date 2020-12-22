@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,25 +15,31 @@ import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
 
+import oracle.jdbc.OraclePreparedStatement;
+
 public class JdbcNoticeDao implements NoticeDao {
 
 	@Override
 	public int insert(Notice notice) {
 		int result = 0;
 		
-			
-		
 		String url = DBContext.URL;
-		String sql = "INSERT INTO NOTICE(TITLE, CONTENT) VALUES(?,?)"; 
+		String sql = "INSERT INTO NOTICE(TITLE, CONTENT, WRITER_ID) VALUES(?,?,?) RETURNING ID INTO ?"; 
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
-			PreparedStatement st = con.prepareStatement(sql);
+			OraclePreparedStatement st = (OraclePreparedStatement) con.prepareStatement(sql);
 			st.setString(1, notice.getTitle());
 			st.setString(2, notice.getContent());			
-			//ResultSet rs = st.executeQuery();  // select 문장에만
-			result = st.executeUpdate(); // insert, update, delete 문장일 때						
+			st.setString(3, notice.getWriterId());			
+			st.registerReturnParameter(4, Types.INTEGER);
+			
+			st.execute();
+			ResultSet rs = st.getReturnResultSet();
+			rs.next();
+			result = rs.getInt(1);
+			System.out.println("result : " + result);
 			st.close();
 			con.close();			
 		} catch (SQLException e) {
@@ -112,12 +119,13 @@ public class JdbcNoticeDao implements NoticeDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, "NEWLEC", "11111");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);			
+			ResultSet rs = st.executeQuery(sql);	
 			
 			if(rs.next()) {
 			    String title = rs.getString("title");
 			    String  writerId = rs.getString("writer_id");
 			    String content = rs.getString("content");
+			    //content = content.replace("\r\n", "<br >");
 			    Date regdate = rs.getDate("regdate");
 			    int hit = rs.getInt("hit");
 			    String files = rs.getString("files");
@@ -254,7 +262,7 @@ public class JdbcNoticeDao implements NoticeDao {
 			    int id = rs.getInt("id");
 			    String title = rs.getString("title");
 			    String  writerId = rs.getString("writer_id");
-			    String content = rs.getString("content");
+			    //String content = rs.getString("content");
 			    Date regdate = rs.getDate("regdate");
 			    int hit = rs.getInt("hit");
 			    String files = rs.getString("files");
@@ -265,7 +273,7 @@ public class JdbcNoticeDao implements NoticeDao {
 						id,
 					    title,
 					    writerId,
-					    content,
+					    "",
 					    regdate,
 					    hit,
 					    files,

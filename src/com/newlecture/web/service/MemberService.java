@@ -8,10 +8,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.newlecture.web.dao.MemberDao;
+import com.newlecture.web.dao.jdbc.JdbcMemberDao;
 import com.newlecture.web.entity.Member;
 
 public class MemberService {
 
+	private MemberDao memberDao;
+	
+	public MemberService() {
+		memberDao = new JdbcMemberDao();
+	}
+	
 	public List<Member> getList() {
 		List<Member> list = new ArrayList<>();
 		
@@ -56,6 +64,18 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public boolean isValid(String uid, String pwd) {
+		
+		Member member = memberDao.get(uid);
+		
+		if(member == null) // 회원이 아닌 경우
+			return false;
+		else if(!member.getPwd().equals(pwd)) // 회원이긴 한데.. 비번이 일치하지 않는 경우
+			return false;
+		
+		return true;
 	}
 	
 }

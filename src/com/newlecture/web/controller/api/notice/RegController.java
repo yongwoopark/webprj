@@ -1,4 +1,4 @@
-package com.newlecture.web.controller.admin.notice;
+package com.newlecture.web.controller.api.notice;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,7 +17,7 @@ import javax.servlet.http.Part;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.NoticeService;
 
-@WebServlet("/admin/board/notice/reg")
+@WebServlet("/api/board/notice/reg")
 @MultipartConfig(
     fileSizeThreshold = 1024*1024,
     maxFileSize = 1024*1024*5, //5메가

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>    
+</head>
+<body>
+    <h1>주소목록</h1>
+    <ul>
+        <li><span>서울시</span><input type="button" value="선택"></li>
+        <li><span>강원도 춘천시</span><input type="button" value="선택"></li>
+    </ul>
+    <script>
+        window.onload = function(){
+            var btn1 = document.getElementsByTagName("input")[0];
+            
+            btn1.onclick = function(){
+                var h1 = parent.document.getElementsByTagName("h1")[0];
+                h1.innerText = "하하하";
+                // var zipCodeInput = opener.document.getElementsByClassName("zipcode-input")[0];
+                // zipCodeInput.value="123456";
+                // window.close();
+            }
+        };
+
+    </script>
+
+</body>
+</html>
