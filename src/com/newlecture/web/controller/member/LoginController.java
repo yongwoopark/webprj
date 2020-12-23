@@ -19,6 +19,10 @@ public class LoginController extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String returnURL = request.getParameter("return-url");
+		request.setAttribute("returnUrl", returnURL);
+		
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 	
@@ -27,14 +31,25 @@ public class LoginController extends HttpServlet {
 		
 		String uid = request.getParameter("uid");
 		String pwd =request.getParameter("pwd");
+		String returnURL = request.getParameter("return-url");
+		
 		System.out.printf("uid:%s, pwd:%s\n", uid, pwd);
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();		
+		// 1. 내가 로그인 상태인가? 확인 방법 
+		// 2. 걸려서 왔으면 다시 가야지?
+		// 3. 권한과 인증이 같은 건 아니지?
 		
 		if(service.isValid(uid, pwd)) {
 			// 유효 하니까... 유효함을 어딘가에 저장해야 한다.
 			session.setAttribute("uid", uid);
-			response.sendRedirect("../index");
+			
+			session.setAttribute("role", "admin");
+			
+			if(returnURL != null && !returnURL.equals(""))
+				response.sendRedirect(returnURL);
+			else
+				response.sendRedirect("../index");
 		}
 		
 		

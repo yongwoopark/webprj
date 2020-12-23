@@ -15,16 +15,24 @@ import com.newlecture.web.service.NoticeService;
 
 @WebServlet("/admin/board/notice/list")
 public class ListController extends HttpServlet {
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+//		HttpSession session  = request.getSession();
+//		
+//		// 인증 했는지 검사
+//		if(session.getAttribute("uid") == null) {
+//			response.sendRedirect("../../../member/login?return-url=../admin/board/notice/list");
+//			return;
+//		}
+//		// 권한이 있는지 검사
+//		if(!session.getAttribute("role").equals("admin")) {
+//			response.sendRedirect("../../../error/error?errorNo=403");
+//			return;
+//		}
 		
-		HttpSession session  = request.getSession();
-		
-		if(session.getAttribute("uid") == null) {
-			response.sendRedirect("../../../member/login");
-			return;
-		}
-			// 너 로그인하고 와~
+		// 너 로그인하고 와~
 		
 		NoticeService service = new NoticeService();
 		List<NoticeView> list = service.getViewList(1, 10);
