@@ -31,6 +31,14 @@ public class Member {
 		this.regdate = regdate;
 	}
 
+	public Member(int id, String pwd, String nicname, String email, String info, Date regdate) {
+		this.id = id;
+		this.nicname = nicname;
+		this.pwd = pwd;		
+		this.email = email;
+		this.regdate = regdate;
+	}
+
 	public int getId() {
 		return id;
 	}

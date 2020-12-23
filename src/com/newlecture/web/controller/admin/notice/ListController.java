@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.newlecture.web.entity.NoticeView;
 import com.newlecture.web.service.NoticeService;
@@ -16,6 +17,14 @@ import com.newlecture.web.service.NoticeService;
 public class ListController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session  = request.getSession();
+		
+		if(session.getAttribute("uid") == null) {
+			response.sendRedirect("../../../member/login");
+			return;
+		}
+			// 너 로그인하고 와~
 		
 		NoticeService service = new NoticeService();
 		List<NoticeView> list = service.getViewList(1, 10);
