@@ -34,7 +34,9 @@ public class LoginController extends HttpServlet {
 		if(service.isValid(uid, pwd)) {
 			// 유효 하니까... 유효함을 어딘가에 저장해야 한다.
 			session.setAttribute("uid", uid);
+			response.sendRedirect("../index");
 		}
+		
 		
 //		세션->id, 저장->
 //		인증->저장

@@ -32,8 +32,6 @@ public class MemberService {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			
-			
-			
 			while(rs.next()) {
 				int id = rs.getInt("id");
 				String nicname = rs.getString("nicname");
@@ -42,7 +40,7 @@ public class MemberService {
 				
 				Member m = new Member();
 				m.setId(id);
-				m.setNicname(nicname);
+				m.setNicName(nicname);
 				m.setName(name);
 				m.setPwd(pwd);
 				

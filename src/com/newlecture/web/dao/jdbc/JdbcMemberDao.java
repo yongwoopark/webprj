@@ -14,10 +14,10 @@ public class JdbcMemberDao implements MemberDao {
 
 	@Override
 	public Member get(String nicname) {
-		Member n = null;
+		Member m = null;
 		
 		String url = DBContext.URL;
-		String sql = "SELECT * FROM MEMBER WHERE NICNAME="+nicname; 
+		String sql = "SELECT * FROM MEMBER WHERE NICNAME='"+nicname+"'"; 
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -26,20 +26,28 @@ public class JdbcMemberDao implements MemberDao {
 			ResultSet rs = st.executeQuery(sql);	
 			
 			if(rs.next()) {
-			    int id = rs.getInt("id");
-			    String  pwd = rs.getString("pwd");
-			    String email = rs.getString("email");
-			    String info = rs.getString("info");
-			    Date regdate = rs.getDate("regdate");			    
-				
-				n = new Member(
-						id,
-					    pwd,
-					    nicname,
-					    email,
-					    info,
-					    regdate
-				);				
+				 int id = rs.getInt("id");
+                String nicName = rs.getString("nicName");
+                String pwd = rs.getString("pwd");
+                String name = rs.getString("name");
+                String gender = rs.getString("gender");
+                String birthday = rs.getString("birthday");    
+                String phone = rs.getString("phone");
+                String email = rs.getString("email");
+                String regdate = rs.getString("regdate");
+               
+               m = new Member(
+                      id,
+                      nicname,
+                      pwd,
+                      name,
+                      gender,
+                      birthday,
+                      phone,
+                      email,
+                      regdate
+               );
+
 				
 			}
 						
@@ -55,7 +63,7 @@ public class JdbcMemberDao implements MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return n;
+		return m;
 	}
 
 }

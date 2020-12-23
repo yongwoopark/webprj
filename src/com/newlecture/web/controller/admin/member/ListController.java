@@ -34,7 +34,7 @@ public class ListController extends HttpServlet {
 		for(int i=0; i<size; i++) {
 			Member m = list.get(i);
 			html += "<tr>";
-			html += "<td>" + m.getNicname() + "</td><td>"+m.getName()+"</td>";
+			html += "<td>" + m.getNicName() + "</td><td>"+m.getName()+"</td>";
 			html += "</tr>";
 		}		
 		
