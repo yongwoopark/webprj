@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <script src="ex1-dom.js"></script>
     <style>
         header{
@@ -22,6 +23,41 @@
     <header>
         헤더입니다.
     </header>
+    <section id="s13">
+        <style>
+            #s13 .container{
+                width:500px;
+                height: 300px;
+                border:1px solid gray;
+            }
+
+            #s13 .box{
+                width:100px;
+                height: 100px;
+                background: blue;
+
+                position: absolute;                
+            }
+        </style>
+        <h1>마우스 이벤트 : 드래그 드랍</h1>
+        <div class="container">
+            <div class="box"></div>
+        </div>
+    </section>
+    <hr>
+    <section id="s12">
+        <style>
+            #s12 input{
+                display: none;
+            }
+        </style>
+        <h1>트리거</h1>
+        <div>
+            <input type="file">
+            <span class="file-button">파일선택</span>
+        </div>
+    </section>
+    <hr>
     <section id="s11">
         <h1>Ajax 다루기</h1>
         

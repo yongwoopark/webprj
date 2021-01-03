@@ -1,4 +1,72 @@
 window.addEventListener("load", function(){
+    var section = document.querySelector("#s13");
+    
+    var container = section.querySelector(".container");
+    var box = container.querySelector(".box");
+
+    var down = false;
+    //var offX = 0;
+    //var offY = 0;
+    var offset = {x:0, y:0};
+
+    box.onclick = function(e){
+        offset.x = e.x;
+        offset.y = e.y;
+        console.log(offset);
+    }
+
+    container.onmousedown = function(e){
+        console.log("down");
+        down = true;
+    };
+
+    container.onmouseup = function(){
+        console.log("up");
+        down = false;
+    };
+
+    container.onmouseenter = function(){
+        console.log("enter");
+    };
+
+    container.onmouseleave = function(){
+        console.log("leave");
+    };
+
+    container.onmouseout = function(){
+        console.log("out");
+    };
+
+    container.onmousemove = function(e){
+        if(down){
+            box.style.left = e.x + "px";
+            box.style.top = e.y + "px";
+        }
+    };
+
+    container.onmouseover = function(){
+        console.log("over");
+    };
+	
+});
+
+window.addEventListener("load", function(){
+    var section = document.querySelector("#s12");
+    var fileButton = section.querySelector(".file-button");
+	var file = section.querySelector("input[type=file]");
+	fileButton.onclick = function(e){
+        var event = new MouseEvent("click", {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true
+        });
+            
+        file.dispatchEvent(event);
+
+    }
+});
+
+window.addEventListener("load", function(){
     var section = document.querySelector("#s11");
     var button1 = section.querySelector(".button1");
 	var tbody = section.querySelector("tbody");    

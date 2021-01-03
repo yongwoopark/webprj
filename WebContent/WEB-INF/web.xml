@@ -23,7 +23,7 @@
   metadata-complete="false">
 <!--   <servlet>
     <servlet-name>n</servlet-name>
-    <servlet-class>Nana</servlet-class>    
+    <servlet-class>Nana</servlet-class> 
   </servlet>
   <servlet-mapping>
     <servlet-name>n</servlet-name>
